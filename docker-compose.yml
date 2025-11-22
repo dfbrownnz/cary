@@ -1,0 +1,32 @@
+version: '3.8' # Use a recent version of the Docker Compose specification
+
+services:
+  # Define the service for your Next.js application
+  nextjs-app:
+    # Use 'build' to reference the Dockerfile in the current directory
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    # Map the container's port 3000 to the host's port 3000
+    ports:
+      - "3000:3000"
+      
+    # Use volumes to mount the source code (optional, primarily for development)
+    # If you were developing, you'd add:
+    # - /app/node_modules
+    # volumes:
+    #   - .:/app
+      
+    # Restart the container if it fails
+    restart: always 
+    
+    # Set environment variables (optional, but good practice)
+    environment:
+      # Next.js port is 3000 by default (as set in the Dockerfile)
+      - PORT=3000 
+      # Set NODE_ENV to production for optimized Next.js runtime
+      - NODE_ENV=production
+  
+  # docker compose up -d --build
+  # docker compose down
