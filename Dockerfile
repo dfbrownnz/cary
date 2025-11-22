@@ -15,7 +15,8 @@ RUN apt-get update -qq && \
     pkg-config
 
 # Copy package files to install dependencies
-COPY package.json yarn.lock package-lock.json* pnpm-lock.yaml* ./
+# COPY package.json yarn.lock package-lock.json* pnpm-lock.yaml* ./
+COPY package.json package-lock.json*  ./
 RUN npm install
 
 # Stage 2: Build the Next.js application
