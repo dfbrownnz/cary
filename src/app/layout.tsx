@@ -6,7 +6,7 @@ import LeftSideNavBar from './components/LeftSideNavBar';
 import QueryProvider from './components/QueryProvider';
 
 export const metadata = {
-  title: 'CaryTodos',
+  title: 'Todos',
   description: 'A simple Next.js application with fixed navigation.',
 };
 
