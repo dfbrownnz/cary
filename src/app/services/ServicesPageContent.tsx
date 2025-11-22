@@ -9,6 +9,11 @@ export default function ServicesPageContent() {
   // Read all search parameters from the URL
   const searchParams = useSearchParams();
   
+    // Read current URL parameters
+  const currentQuarter = searchParams.get('listname') || 'No Quarter';
+  // 👇 NEW: Read the 'manager' parameter
+  const currentManager = searchParams.get('manager') || 'No Manager'; 
+
   // Convert parameters to a readable format (e.g., array of [key, value] pairs)
   const allParams = Array.from(searchParams.entries());
 
@@ -55,6 +60,11 @@ export default function ServicesPageContent() {
           <p className="text-sm text-gray-600">Tailor-made software solutions to meet your specific business needs.</p>
         </li>
       </ul>
+
+         <p className="mt-4 text-sm text-gray-500">
+        Current 'listname' URL Parameter: **{currentQuarter}**<br/>
+        Current 'manager' URL Parameter: **{currentManager}** (Selecting either dropdown will redirect to /services)
+      </p>
     </div>
   );
 }
