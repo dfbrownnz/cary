@@ -18,20 +18,21 @@ interface ListRecord {
  */
 export async function GET() {
   try {
+    const records: ListRecord[] =[]
     // Prisma will connect, query the 'lists' table, and return the result.
-    const records: ListRecord[] = await prisma.lists.findMany({
-      // You can add filtering, sorting, or selecting specific fields here
-      orderBy: {
-        created_at: 'asc',
-      },
-      select: {
-        list_id: true,
-        list_name: true,
-        list_value: true,
-        created_at: true,
-        updated_at: true,
-      }
-    });
+    // const records: ListRecord[] = await prisma.lists.findMany({
+    //   // You can add filtering, sorting, or selecting specific fields here
+    //   orderBy: {
+    //     created_at: 'asc',
+    //   },
+    //   select: {
+    //     list_id: true,
+    //     list_name: true,
+    //     list_value: true,
+    //     created_at: true,
+    //     updated_at: true,
+    //   }
+    // });
 
     return NextResponse.json(records, { status: 200 });
   } catch (error) {
