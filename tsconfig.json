@@ -19,9 +19,12 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*" , "./*"]
+    } ,
+    
+      //  "@/components/*": [            "src/components/*"        ] // If you use a 'src' directory, it should look like this:
   },
   "include": [
     "next-env.d.ts",
