@@ -1,0 +1,32 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // Refer to the connection URL from your environment variables
+  // url      = env("DATABASE_URL")
+}
+
+// Map the 'lists' table from your database
+model lists {
+  // Use the name of the column that is the primary key
+  list_id     Int      @id @default(autoincrement()) 
+  list_name   String
+  list_value  String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("lists") // Explicitly map to the table name 'lists' in your database
+}
+
+model User {
+  id      Int     @id @default(autoincrement())
+  email   String  @unique
+  name    String?
+  
+  // Maps this model to a table named 'user' or 'users' in the database
+  @@map("users") // Use 'users' or 'user' based on your actual table name
+}
