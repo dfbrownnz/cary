@@ -52,6 +52,11 @@ export default function LeftSideNavBar() {
               Messages (5)
             </Link>
           </li>
+          <li>
+            <Link href={generateHref('/gcs')} className="block p-2 rounded hover:bg-gray-200">
+              gcs
+            </Link>
+          </li>
         </ul>
       </nav>
     </aside>
