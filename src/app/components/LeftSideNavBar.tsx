@@ -27,7 +27,7 @@ export default function LeftSideNavBar() {
 
   return (
     <aside className={`fixed ${TOP_OFFSET_CLASS} left-0 h-screen w-64 bg-gray-100 p-4 border-r border-gray-300 z-10 overflow-y-auto`}>
-      <h3 className="text-lg font-semibold mb-4 text-gray-800">Quick Links</h3>
+      <h3 className="text-lg font-semibold mb-4 text-black-800">Quick Links</h3>
       <nav>
         <ul className="space-y-2">
           
@@ -43,7 +43,7 @@ export default function LeftSideNavBar() {
             </Link>
           </li>
           <li>
-            <Link href={generateHref('/profile')} className="block p-2 rounded hover:bg-gray-200">
+            <Link href={generateHref('/profile')} className="block p-2 rounded hover:bg-gray-200 text-gray-800">
               Profile
             </Link>
           </li>
@@ -53,7 +53,7 @@ export default function LeftSideNavBar() {
             </Link>
           </li>
           <li>
-            <Link href={generateHref('/gcs')} className="block p-2 rounded hover:bg-gray-200">
+            <Link href={generateHref('/gcs')} className="block p-2 rounded hover:bg-gray-200 text-gray-800">
               gcs
             </Link>
           </li>
