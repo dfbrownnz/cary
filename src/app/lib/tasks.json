@@ -1,1 +1,12 @@
-[]
+[  {
+    "taskid": 1764288282898,
+    "title": "Append JSON to GCS",
+    "description": "Test the updated read-modify-save logic.",
+    "statusflag": "idk",
+    "statusdate": "20251127",
+    "group":"approval",
+    "applicationid":"123-1",
+    "applicationname":"Application 1",
+    "projectid" : "seq1"
+  }
+]

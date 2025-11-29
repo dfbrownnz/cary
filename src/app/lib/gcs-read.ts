@@ -4,14 +4,15 @@
 
 import { Storage } from '@google-cloud/storage';
 
+import { TaskRecord } from '../lib/typeinterfaces'
 // Define the TaskRecord interface here or import it from a shared file
-interface TaskRecord {
-  id: number;
-  title: string;
-  description: string;
-  isCompleted: boolean;
-  createdAt: Date;
-}
+// interface TaskRecord {
+//   id: number;
+//   title: string;
+//   description: string;
+//   isCompleted: boolean;
+//   createdAt: Date;
+// }
 
 const BUCKET_NAME: string = 'cary-tasks';
 const FILE_NAME: string = 'tasks.json';

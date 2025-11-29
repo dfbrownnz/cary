@@ -23,9 +23,9 @@ export default function TopNavBar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-blue-600 text-white z-10 p-4 shadow-md">
+    <header className="fixed top-0 left-0 w-full bg-blue-900 text-white z-10 p-4 shadow-md">
       <nav className="flex justify-between items-center max-w-7xl mx-auto">
-        <div className="text-xl font-bold">App Logo</div>
+        <div className="text-xl font-bold">Proof Of Concept</div>
         <ul className="flex space-x-6">
           {/* 👇 Use generateHref() for all links */}
           <li>

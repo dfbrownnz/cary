@@ -6,6 +6,11 @@ import { useState, useTransition, useEffect } from 'react';
 import { saveRecordToGCS } from '../lib/gcs-save' // '@/lib/gcs-save'; // Adjust import path if needed
 import { readRecordsFromGCS } from '../lib/gcs-read'; // <-- Import the new read function
 
+import { useQuery } from '@tanstack/react-query';
+import { getFormattedDateYYYMMDD } from '../lib/date'
+
+import { TaskRecord } from '../lib/typeinterfaces'
+
 // Import Shadcn Table Components
 import {
     Table,
@@ -13,17 +18,18 @@ import {
     TableCell,
     TableHead,
     TableHeader,
+    TableFooter,
     TableRow,
 } from '../components/ui/table'; // Adjust path if needed
 
 // Note: You should define TaskRecord in a shared types file (e.g., types/index.ts)
-interface TaskRecord {
-    id: number;
-    title: string;
-    description: string;
-    isCompleted: boolean;
-    createdAt: Date;
-}
+// interface TaskRecord {
+//     id: number;
+//     title: string;
+//     description: string;
+//     isCompleted: boolean;
+//     createdAt: Date;
+// }
 
 //export default function GcsPage() {
 function TaskForm({ onTaskSaved }: { onTaskSaved: () => void }) {
@@ -35,20 +41,28 @@ function TaskForm({ onTaskSaved }: { onTaskSaved: () => void }) {
     const [isPending, startTransition] = useTransition();
     const [message, setMessage] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSaveTask = () => {
+        // Logic to collect data and POST the new record
+        console.log('Posting new record...');
+
+        //   e.preventDefault();
 
         if (!title || !description) {
             setMessage('Title and Description are required.');
             return;
         }
 
+
         const newRecord: TaskRecord = {
-            id: Date.now(), // Unique ID generation
+            taskid: Date.now(), // Use current timestamp for a unique ID
             title: title,
             description: description,
-            isCompleted: false,
-            createdAt: new Date(),
+            statusflag: ' gcs page ', // Default value
+            statusdate: getFormattedDateYYYMMDD(),
+            group: '',
+            applicationid: '',
+            applicationname: '',
+            projectid: '',
         };
 
         // Start the server action within a transition
@@ -65,6 +79,11 @@ function TaskForm({ onTaskSaved }: { onTaskSaved: () => void }) {
                 setMessage(`❌ Error saving: ${(error as Error).message}`);
             }
         });
+    };
+
+
+    const handleSubmit = (e: React.FormEvent) => {
+
     };
 
     return (
@@ -102,24 +121,12 @@ function TaskForm({ onTaskSaved }: { onTaskSaved: () => void }) {
                         style={{ width: '100%', padding: '10px', boxSizing: 'border-box', border: '1px solid #ddd' }}
                     />
                 </div>
-
-                {/* Submission Button */}
-                <button
-                    type="submit"
-                    disabled={isPending}
-                    style={{
-                        padding: '10px 20px',
-                        fontSize: '16px',
-                        fontWeight: 'bold',
-                        backgroundColor: isPending ? '#ccc' : '#0070f3',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '5px',
-                        cursor: isPending ? 'not-allowed' : 'pointer'
-                    }}
-                >
+                
+                <button onClick={handleSaveTask} className={`p-2 rounded text-white ${isPending ? 'bg-gray-400' : 'bg-blue-900'}`}>
                     {isPending ? 'Saving to GCS...' : 'Save Task Record'}
                 </button>
+
+
             </form>
 
 
@@ -140,11 +147,42 @@ function TaskForm({ onTaskSaved }: { onTaskSaved: () => void }) {
 
 };
 
+
+
 // --- Main Page Component ---
 export default function GcsPage() {
     const [tasks, setTasks] = useState<TaskRecord[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    // Step 1: Define the function that fetches the data.
+    // It must return a Promise that resolves to the data.
+    // const fetchTasks = async () => {
+    //     // might not be in the required app/api/tasks/route.ts structure).
+    //     const response = await fetch('/api/tasks'); // Replace with your actual GCS API endpoint
+    //     if (!response.ok) {
+    //         throw new Error('Network response was not ok');
+    //     }
+    //     return response.json();
+    // };
+
+    // const {
+    //     data: tasks, // The fetched data (your task records)
+    //     isLoading,   // A boolean for when the fetch is running for the first time
+    //     isError,     // A boolean if the fetch failed
+    //     error,       // The error object if the fetch failed
+    // } = useQuery({
+    //     queryKey: ['gcsTasks'], // A unique key for this query's cache
+    //     queryFn: fetchTasks,    // The function that performs the fetching
+    // });
+
+    // if (isLoading) {
+    //     return <div>Loading tasks...</div>;
+    // }
+
+    // if (isError) {
+    //     return <div>Error loading tasks: {error.message}</div>;
+    // }
 
     const fetchTasks = async () => {
         setIsLoading(true);
@@ -166,12 +204,10 @@ export default function GcsPage() {
     }, []);
 
     return (
-        <div style={{ padding: '40px', maxWidth: '600px', margin: '0 auto' }}>
-            <TaskForm onTaskSaved={fetchTasks} />
-
+        // <div style={{ padding: '40px', maxWidth: '600px', margin: '0 auto' }}>
+        <div className="container mx-auto **max-w-7xl** mb-8">
             <h1>Add New Task to GCS</h1>
-
-
+            <TaskForm onTaskSaved={fetchTasks} />
 
             <h2 style={{ marginTop: '40px', marginBottom: '20px' }}>Task Records from GCS</h2>
 
@@ -195,21 +231,36 @@ export default function GcsPage() {
                     </TableHeader>
                     <TableBody>
                         {tasks.map((task) => (
-                            <TableRow key={task.id}>
-                                <TableCell className="font-medium">{task.id}</TableCell>
+                            <TableRow key={task.taskid}>
+                                <TableCell className="font-medium">{task.taskid}</TableCell>
                                 <TableCell>{task.title}</TableCell>
                                 <TableCell>{task.description.substring(0, 50)}...</TableCell>
                                 <TableCell className="text-center">
-                                    {task.isCompleted ? '✅' : '⏳'}
+                                    {task.statusflag}
                                 </TableCell>
                                 <TableCell className="text-right">
-                                    {new Date(task.createdAt).toLocaleDateString()}
+                                    {/* {new Date(task.createdAt).toLocaleDateString()}
+                                     */}
+                                    {(task.statusdate)}
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TableCell colSpan={4}>Total</TableCell>
+                            <TableCell className="text-right">Stats</TableCell>
+                        </TableRow>
+                    </TableFooter>
                 </Table>
             )}
+
+            <section>
+
+                <p className="text-gray-600">
+
+                </p>
+            </section>
         </div>
     );
 }

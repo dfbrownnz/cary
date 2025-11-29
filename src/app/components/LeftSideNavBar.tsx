@@ -26,37 +26,44 @@ export default function LeftSideNavBar() {
   };
 
   return (
-    <aside className={`fixed ${TOP_OFFSET_CLASS} left-0 h-screen w-64 bg-gray-100 p-4 border-r border-gray-300 z-10 overflow-y-auto`}>
-      <h3 className="text-lg font-semibold mb-4 text-black-800">Quick Links</h3>
+    // <header className="fixed top-0 left-0 w-full bg-blue-900 text-white z-10 p-4 shadow-md"></header>
+    <aside className={`fixed ${TOP_OFFSET_CLASS} left-0 h-screen w-64 bg-blue-900 text-white p-4 border-r z-10 overflow-y-auto`}>
+      <h3 className="text-lg font-semibold mb-4 bg-blue-900 text-white p-2 rounded">Quick Links</h3>
       <nav>
         <ul className="space-y-2">
           
           {/* 👇 Use generateHref() for all links */}
           <li>
-            <Link href={generateHref('/dashboard')} className="block p-2 rounded hover:bg-gray-200">
+            <Link href={generateHref('/dashboard')} className="block p-2 rounded hover:bg-blue-700">
               Dashboard
             </Link>
           </li>
           <li>
-            <Link href={generateHref('/settings')} className="block p-2 rounded hover:bg-gray-200">
+            <Link href={generateHref('/settings')} className="block p-2 rounded hover:bg-blue-700">
               Settings
             </Link>
           </li>
           <li>
-            <Link href={generateHref('/profile')} className="block p-2 rounded hover:bg-gray-200 text-gray-800">
+            <Link href={generateHref('/profile')} className="block p-2 rounded hover:bg-blue-700">
               Profile
             </Link>
           </li>
           <li>
-            <Link href={generateHref('/messages')} className="block p-2 rounded hover:bg-gray-200">
+            <Link href={generateHref('/messages')} className="block p-2 rounded hover:bg-blue-700">
               Messages (5)
             </Link>
           </li>
           <li>
-            <Link href={generateHref('/gcs')} className="block p-2 rounded hover:bg-gray-200 text-gray-800">
+            <Link href={generateHref('/gcs')} className="block p-2 rounded hover:bg-blue-700">
               gcs
             </Link>
           </li>
+           <li>
+            <Link href={generateHref('/todos')} className="block p-2 rounded hover:bg-blue-700">
+              todos
+            </Link>
+          </li>
+    
         </ul>
       </nav>
     </aside>
