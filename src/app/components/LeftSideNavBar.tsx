@@ -35,10 +35,10 @@ export default function LeftSideNavBar() {
           {/* 👇 Use generateHref() for all links */}
           <li>
             <Link href={generateHref('/dashboard')} className="block p-2 rounded hover:bg-blue-700">
-              Dashboard
+              Dashboard expected vs actual
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href={generateHref('/settings')} className="block p-2 rounded hover:bg-blue-700">
               Settings
             </Link>
@@ -52,12 +52,8 @@ export default function LeftSideNavBar() {
             <Link href={generateHref('/messages')} className="block p-2 rounded hover:bg-blue-700">
               Messages (5)
             </Link>
-          </li>
-          <li>
-            <Link href={generateHref('/gcs')} className="block p-2 rounded hover:bg-blue-700">
-              gcs
-            </Link>
-          </li>
+          </li> */}
+        
                <li>
             <Link href={generateHref('/projects')} className="block p-2 rounded hover:bg-blue-700">
               Projects by Quarter
@@ -78,6 +74,11 @@ export default function LeftSideNavBar() {
            <li>
             <Link href={generateHref('/projects')} className="block p-2 rounded hover:bg-blue-700">
               Features
+            </Link>
+          </li>
+            <li>
+            <Link href={generateHref('/gcs')} className="block p-2 rounded hover:bg-blue-700">
+              gcs
             </Link>
           </li>
     

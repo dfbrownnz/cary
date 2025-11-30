@@ -41,7 +41,8 @@ export function ProjectListPage() {
         const projectListNew: ProjectListRecord = {
 
             //projectId: projectListRcd.projectId + '_' + new Date().getTime(),
-            projectId: '_' + new Date().getTime(),
+            //projectId: '_' + new Date().getTime(),
+            projectId: projectListRcd.projectId ,
             projectName: projectListRcd.projectName,
             applicationId: projectListRcd.applicationId,
             applicationName : projectListRcd.applicationName,

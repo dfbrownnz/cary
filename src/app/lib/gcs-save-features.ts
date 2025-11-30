@@ -2,12 +2,12 @@
 
 import { Storage } from '@google-cloud/storage';
 
-import { ProjectListRecord } from './typeinterfaces';
+import { SdaFeature } from './typeinterfaces';
 
 // Define the ProjectListRecord interface here or import it from a shared file}
 
 const BUCKET_NAME: string = 'cary-tasks'; // cary-tasks
-const FILE_NAME: string = 'project_profile.json';
+const FILE_NAME: string = 'features.json';
 
 const storage = new Storage();
 
@@ -16,11 +16,11 @@ const storage = new Storage();
  * and uploads the updated array back to GCS.
  * * @param newRecord The new data object to be appended.
  */
-export async function saveProjectListToGCS(newRecord: ProjectListRecord): Promise<void> {
+export async function saveProjectListToGCS(newRecord: SdaFeature): Promise<void> {
     const bucket = storage.bucket(BUCKET_NAME);
     const file = bucket.file(FILE_NAME);
 
-    let tasksArray: ProjectListRecord[] = [];
+    let tasksArray: SdaFeature[] = [];
 
     try {
         // 1. ATTEMPT TO READ EXISTING FILE
@@ -59,7 +59,7 @@ export async function saveProjectListToGCS(newRecord: ProjectListRecord): Promis
     // 2. MODIFY (APPEND) THE CONTENT
     //const projectNameExists = tasksArray.find((project) => project.projectName === newRecord.projectName);
     // 1. Find the index of the object with the matching projectId
-    const indexToReplace = tasksArray.findIndex(item => item.projectId === newRecord.projectId);
+    const indexToReplace = tasksArray.findIndex(item => item.featureId === newRecord.featureId);
 
     // 2. Check if an item was found (index will be -1 if not found)
     if (indexToReplace !== -1) {
@@ -67,7 +67,7 @@ export async function saveProjectListToGCS(newRecord: ProjectListRecord): Promis
         tasksArray[indexToReplace] = newRecord;
         console.log(`Successfully replaced item at index ${indexToReplace}.`);
     } else {
-        console.log(`No item found with projectId: ${ newRecord.projectId}`);
+        console.log(`No item found with projectId: ${ newRecord.featureId }`);
          tasksArray.push(newRecord);
     }
    
@@ -96,7 +96,7 @@ export async function saveProjectListToGCS(newRecord: ProjectListRecord): Promis
  * Downloads the tasks.json file, parses it, and returns the array of ProjectListRecords.
  * @returns {Promise<ProjectListRecord[]>} An array of task records.
  */
-export async function readProjectListFromGCS(): Promise<ProjectListRecord[]> {
+export async function readProjectListFromGCS(): Promise<SdaFeature[]> {
     const bucket = storage.bucket(BUCKET_NAME);
     const file = bucket.file(FILE_NAME);
 
@@ -106,7 +106,7 @@ export async function readProjectListFromGCS(): Promise<ProjectListRecord[]> {
 
         // Parse the JSON content
         const existingJson = content.toString('utf8');
-        const tasksArray: ProjectListRecord[] = JSON.parse(existingJson);
+        const tasksArray: SdaFeature[] = JSON.parse(existingJson);
 
         return tasksArray;
 
