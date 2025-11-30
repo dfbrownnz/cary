@@ -42,7 +42,21 @@ export const getProjectListArray = async () => {
 export const getTodos = async () => {
   console.log("FETCHING TODOS ON SERVER - lib/todos.ts ");
 
-  return readRecordsFromGCS()
+  //return readRecordsFromGCS()
+  const test = [  {
+    "taskid": 1764288282898,
+    "title": "Append JSON to GCS",
+    "description": "Test the updated read-modify-save logic.",
+    "statusflag": "idk",
+    "statusdate": "20251127",
+    "group":"approval",
+    "applicationid":"123-1",
+    "applicationname":"Application 1",
+    "projectid" : "seq1"
+  }
+]
+return test
+
 
 //   return [
 //     { id: 1, text: "Learn Server Components" },
