@@ -58,14 +58,26 @@ export default function LeftSideNavBar() {
               gcs
             </Link>
           </li>
-           <li>
-            <Link href={generateHref('/todos')} className="block p-2 rounded hover:bg-blue-700">
-              todos
+               <li>
+            <Link href={generateHref('/projects')} className="block p-2 rounded hover:bg-blue-700">
+              Projects by Quarter
             </Link>
           </li>
-             <li>
+           <li>
+            <Link href={generateHref('/todos')} className="block p-2 rounded hover:bg-blue-700">
+              Projects by Lead
+            </Link>
+          </li>
+           <li>
             <Link href={generateHref('/projects')} className="block p-2 rounded hover:bg-blue-700">
-              projects
+              Tasks by owner
+            </Link>
+          </li>
+        
+          
+           <li>
+            <Link href={generateHref('/projects')} className="block p-2 rounded hover:bg-blue-700">
+              Features
             </Link>
           </li>
     

@@ -12,9 +12,15 @@ export function ProjectListPage() {
         projectId: '',
         projectName: '',
         applicationId: '',
-        ownerName: ''
+        applicationName : '',
+        projectLead: '',
+        onboardingQuarter : '',
+        projectGroup : ''
 
     }
+
+
+
     const [projectListRcd, setprojectListRcd] = useState<ProjectListRecord>(projectListRcdBlank);
 
     const { data: projectlistArray, isPending } = useQuery({
@@ -38,7 +44,11 @@ export function ProjectListPage() {
             projectId: '_' + new Date().getTime(),
             projectName: projectListRcd.projectName,
             applicationId: projectListRcd.applicationId,
-            ownerName: projectListRcd.ownerName
+            applicationName : projectListRcd.applicationName,
+            projectGroup : projectListRcd.projectGroup,
+            onboardingQuarter : projectListRcd.onboardingQuarter,
+            projectLead: projectListRcd.projectLead
+
 
         };
         mutation.mutate(projectListNew); 
@@ -71,9 +81,13 @@ export function ProjectListPage() {
 // Define the initial state (can be empty for a new record, or pre-filled for editing)
 const initialProjectState: ProjectListRecord = {
     projectId: '',
+    projectGroup: '',
+    onboardingQuarter: '',
+    applicationName: '',
     projectName: '',
     applicationId: '',
-    ownerName: '',
+    projectLead: '',
+
 };
 
 interface ProjectListFormProps {
@@ -102,7 +116,7 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
         e.preventDefault(); // Prevent default browser form submission
 
         // Simple validation check (e.g., all fields must be filled)
-        if (!project.projectId || !project.projectName || !project.applicationId || !project.ownerName) {
+        if (!project.projectId || !project.projectName || !project.applicationId || !project.projectLead) {
             alert('Please fill out all fields.');
             return;
         }
@@ -154,6 +168,19 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
                     />
                 </label>
 
+ {/* Application ID Field */}
+                <label>
+                    Application Name:
+                    <input
+                        type="text"
+                        name="applicationId"
+                        value={project.applicationName}
+                        onChange={handleChange}
+                        required
+                        className="bg-gray-50 border border-gray-300 p-2 rounded"
+                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
+                    />
+                </label>
 
             </div>
             <div className="form-row">
@@ -172,11 +199,38 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
                 </label>
                 {/* Owner Name Field */}
                 <label>
-                    Owner Name:
+                    Project Lead:
                     <input
                         type="text"
-                        name="ownerName"
-                        value={project.ownerName}
+                        name="projectLead"
+                        value={project.projectLead}
+                        onChange={handleChange}
+                        required
+                        className="bg-gray-50 border border-gray-300 p-2 rounded"
+                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
+                    />
+                </label>
+                {/* Owner Name Field */}
+                <label>
+                    Onboarding Quarter:
+                    <input
+                        type="text"
+                        name="projectLead"
+                        value={project.onboardingQuarter}
+                        onChange={handleChange}
+                        required
+                        className="bg-gray-50 border border-gray-300 p-2 rounded"
+                        style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
+                    />
+                </label>
+
+                  {/* Owner Name Field */}
+                <label>
+                   Project Group:
+                    <input
+                        type="text"
+                        name="projectLead"
+                        value={project.projectGroup}
                         onChange={handleChange}
                         required
                         className="bg-gray-50 border border-gray-300 p-2 rounded"
@@ -201,3 +255,4 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
         </form>
     );
 };
+

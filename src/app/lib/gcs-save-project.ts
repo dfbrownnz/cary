@@ -7,7 +7,7 @@ import { ProjectListRecord } from './typeinterfaces';
 // Define the ProjectListRecord interface here or import it from a shared file}
 
 const BUCKET_NAME: string = 'cary-tasks'; // cary-tasks
-const FILE_NAME: string = 'project_list.json';
+const FILE_NAME: string = 'project_profile.json';
 
 const storage = new Storage();
 

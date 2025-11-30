@@ -35,7 +35,9 @@ const ProjectListTable: React.FC<TaskTableProps> = ({ projectlistArray, onRowCli
           <TableHead className="w-[100px]">Project Id</TableHead>
           <TableHead>Project Name</TableHead>
           <TableHead className="text-center">Application Id</TableHead>
-          <TableHead className="text-right">Owner Name</TableHead>
+          <TableHead className="text-right">Application Name</TableHead>
+          <TableHead className="text-right">Project Lead</TableHead>
+          <TableHead className="text-right">Onboaridng Quarter</TableHead>
 
         </TableRow>
       </TableHeader>
@@ -52,7 +54,9 @@ const ProjectListTable: React.FC<TaskTableProps> = ({ projectlistArray, onRowCli
             <TableCell className="font-medium">{projectList.projectId}</TableCell> 
             <TableCell className="font-medium">{projectList.projectName}</TableCell> 
             <TableCell className="font-medium text-center">{projectList.applicationId}</TableCell> 
-            <TableCell className="font-medium text-right">{projectList.ownerName}</TableCell> 
+            <TableCell className="font-medium text-right">{projectList.applicationName}</TableCell> 
+            <TableCell className="font-medium text-right">{projectList.projectLead}</TableCell> 
+            <TableCell className="font-medium text-right">{projectList.onboardingQuarter}</TableCell>   
         
 
               
