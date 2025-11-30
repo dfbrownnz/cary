@@ -28,9 +28,10 @@ const ProjectListTable: React.FC<TaskTableProps> = ({ projectlistArray, onRowCli
   }
 
   return (
+    <div className="rounded-lg overflow-hidden shadow-md">
     <Table>
       <TableHeader>
-        <TableRow>
+        <TableRow className="bg-gray-200 text-black font-bold">
           <TableHead className="w-[100px]">Project Id</TableHead>
           <TableHead>Project Name</TableHead>
           <TableHead className="text-center">Application Id</TableHead>
@@ -45,7 +46,8 @@ const ProjectListTable: React.FC<TaskTableProps> = ({ projectlistArray, onRowCli
             key={projectList.projectId} 
             onClick={() => handleRowClick(projectList)}
             // Add a class for visual feedback that the row is clickable
-            className="cursor-pointer hover:bg-muted/50 transition-colors"
+            // className="cursor-pointer hover:bg-muted/50 transition-colors"
+            className="cursor-pointer hover:bg-gray-100 transition-colors"
           >
             <TableCell className="font-medium">{projectList.projectId}</TableCell> 
             <TableCell className="font-medium">{projectList.projectName}</TableCell> 
@@ -59,6 +61,7 @@ const ProjectListTable: React.FC<TaskTableProps> = ({ projectlistArray, onRowCli
         ))}
       </TableBody>
     </Table>
+    </div>
   );
 };
 

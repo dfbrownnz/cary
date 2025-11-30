@@ -63,6 +63,11 @@ export default function LeftSideNavBar() {
               todos
             </Link>
           </li>
+             <li>
+            <Link href={generateHref('/projects')} className="block p-2 rounded hover:bg-blue-700">
+              projects
+            </Link>
+          </li>
     
         </ul>
       </nav>

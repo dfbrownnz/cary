@@ -115,6 +115,7 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
     };
 
     return (
+        
         <form onSubmit={handleSubmit} style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr', // Creates two equally sized columns
@@ -134,6 +135,7 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
                         value={project.projectId}
                         onChange={handleChange}
                         required
+                        className="bg-gray-50 border border-gray-300 p-2 rounded"
                         style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
                     />
                 </label>
@@ -147,6 +149,7 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
                         value={project.applicationId}
                         onChange={handleChange}
                         required
+                        className="bg-gray-50 border border-gray-300 p-2 rounded"
                         style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
                     />
                 </label>
@@ -163,6 +166,7 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
                         value={project.projectName}
                         onChange={handleChange}
                         required
+                        className="bg-gray-50 border border-gray-300 p-2 rounded"
                         style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
                     />
                 </label>
@@ -175,6 +179,7 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
                         value={project.ownerName}
                         onChange={handleChange}
                         required
+                        className="bg-gray-50 border border-gray-300 p-2 rounded"
                         style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
                     />
                 </label>
