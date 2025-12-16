@@ -53,6 +53,11 @@ export default function LeftSideNavBar() {
               Messages (5)
             </Link>
           </li> */}
+             <li>
+            <Link href={generateHref('/settings')} className="block p-2 rounded hover:bg-blue-700">
+              Settings Params
+            </Link>
+          </li>
         
                <li>
             <Link href={generateHref('/projects')} className="block p-2 rounded hover:bg-blue-700">
@@ -81,7 +86,7 @@ export default function LeftSideNavBar() {
               gcs
             </Link>
           </li>
-    
+         
         </ul>
       </nav>
     </aside>

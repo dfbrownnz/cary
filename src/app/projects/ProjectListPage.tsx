@@ -174,7 +174,7 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
                     Application Name:
                     <input
                         type="text"
-                        name="applicationId"
+                        name="applicationName"
                         value={project.applicationName}
                         onChange={handleChange}
                         required
@@ -216,7 +216,7 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
                     Onboarding Quarter:
                     <input
                         type="text"
-                        name="projectLead"
+                        name="onboardingQuarter"
                         value={project.onboardingQuarter}
                         onChange={handleChange}
                         required
@@ -230,7 +230,7 @@ export const ProjectListForm: React.FC<ProjectListFormProps> = ({ initialRecord,
                    Project Group:
                     <input
                         type="text"
-                        name="projectLead"
+                        name="projectGroup"
                         value={project.projectGroup}
                         onChange={handleChange}
                         required
