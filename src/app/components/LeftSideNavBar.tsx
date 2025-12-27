@@ -86,6 +86,11 @@ export default function LeftSideNavBar() {
               gcs
             </Link>
           </li>
+            <li>
+            <Link href={generateHref('/payments')} className="block p-2 rounded hover:bg-blue-700">
+              payments
+            </Link>
+          </li>
          
         </ul>
       </nav>
